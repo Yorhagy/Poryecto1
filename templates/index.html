@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Comfama</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Curso
+                </th>
+                <th>
+                    Puntaje
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in courses %}
+                <tr>
+                    <td>
+                        {{ item['Courses'] }}
+                    </td>
+                    <td>
+                        {{ item['Score'] }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
