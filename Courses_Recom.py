@@ -1,26 +1,27 @@
 from flask import Flask, render_template, request
-import os
-from filtro_data import DbFilter, AlS_implicit, MatrixTransformer
-from Model_Recommendation import recommentation
+from sklearn.externals import joblib
+from scipy.sparse import load_npz
 import pandas as pd
 import json
 import psycopg2
 
+#try:
+    #conn = psycopg2.connect(dbname='Confama', user='postgres', host='cognos', password='Pragma2017+', port=22817)
+    #conn.set_client_encoding('UTF8')
+#except:
+    #print ("I am unable to connect to the database")
 
-try:
-    conn = psycopg2.connect(dbname='Confama', user='postgres', host='cognos', password='Pragma2017+', port=22817)
-    conn.encoding
-except:
-    print ("I am unable to connect to the database")
+#cur = conn.cursor()
+#cur.execute('SELECT * FROM usuario_segmento LIMIT 10')
+#rows = cur.fetchall()
+#print(rows)
 
-cur = conn.cursor()
-cur.execute('SELECT * FROM usuario_segmento LIMIT 10')
-rows = cur.fetchall()
-print(rows)
+#cur.close()
+#conn.close()
 
-cur.close()
-conn.close()
-#data = pd.read_csv('/home/yorhagy/Escritorio/Comfama_recommendation/db_comfama.csv')
+DATA = pd.read_csv('Comfama.csv')
+MODEL = joblib.load('model_implict.pkl')
+USER_COURSE = load_npz('usuario_cursos.npz')
 
 app = Flask(__name__)
 
