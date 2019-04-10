@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Comfama</title>
 </head>
+
 <body>
     <form method="POST" action="/email">
         <input type="text" placeholder="Email" required name="email">
@@ -20,20 +22,27 @@
                 <th>
                     Puntaje
                 </th>
+                <th>
+                    Clasificación
+                </th>
             </tr>
         </thead>
         <tbody>
             {% for item in courses %}
-                <tr>
-                    <td>
-                        {{ item['Curso'] }}
-                    </td>
-                    <td>
-                        {{ item['Score'] }}
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    {{ item['Curso'] }}
+                </td>
+                <td>
+                    {{ item['Score'] }}
+                </td>
+                <td>
+                    {{ item['Clasificación'] }}
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
+
 </html>

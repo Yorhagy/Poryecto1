@@ -1,5 +1,16 @@
 import pandas as pd
 
+def puntaje(Score):
+    frecuencia = []
+    for j in Score:
+        if j < 0.33:
+            frecuencia.append('Bajo')
+        elif j >= 0.33 and j < 0.66:
+            frecuencia.append('Medio')
+        else:
+            frecuencia.append('Alto')
+    return frecuencia
+
 def PrintRecommender(data, recommendation):
     courses = []
     scores = []
@@ -7,7 +18,9 @@ def PrintRecommender(data, recommendation):
         idx, score = course
         courses.append(data.Plan_de_Estudios.loc[data.Cod_Plan_de_Estudios == idx].iloc[0])
         scores.append(score)
-    return pd.DataFrame({'Curso': courses, 'Score': scores})
+    r = pd.DataFrame({'Curso': courses, 'Score': scores})
+    r['Clasificación'] = puntaje(r.Score.values)
+    return r
 
 class recommentation:
     def __init__(self, model, user_course, data, user=None):

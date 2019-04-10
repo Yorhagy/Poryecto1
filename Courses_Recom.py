@@ -49,7 +49,7 @@ def index(email='-h-german@hotmail.com'):
 @app.route('/filtros', methods=['GET','POST'])
 def filtros():
     unidad = ['Programas de Bibliotecas']
-
+    
     if request.method == 'POST':
         unidad = request.form.getlist('uo')
         print(unidad)
@@ -60,7 +60,6 @@ def filtros():
     d = cursos.to_json(orient='records')
     u = usuarios.to_json(orient='records')
     return render_template('filtros.html',usuarios= json.loads(u), courses= json.loads(d))
-       
 
 if __name__ == "__main__":
     app.run(debug= True, port= 8000)
