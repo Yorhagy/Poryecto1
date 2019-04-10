@@ -4,6 +4,7 @@ from scipy.sparse import load_npz
 import pandas as pd
 import json
 import psycopg2
+from Model_Recommender import recommentation
 
 #try:
     #conn = psycopg2.connect(dbname='Confama', user='postgres', host='cognos', password='Pragma2017+', port=22817)
@@ -19,6 +20,7 @@ import psycopg2
 #cur.close()
 #conn.close()
 
+
 DATA = pd.read_csv('Comfama.csv')
 MODEL = joblib.load('model_implict.pkl')
 USER_COURSE = load_npz('usuario_cursos.npz')
@@ -27,23 +29,38 @@ app = Flask(__name__)
 
 @app.route('/email', methods=['GET','POST'])
 @app.route('/')
-def index(correo='-h-german@hotmail.com'):
+def index(email='-h-german@hotmail.com'):
 
-    data_ = MatrixTransformer(data).matrix()
-    model = AlS_implicit(data_).models()
     if request.method == 'POST':
-        if not request.form['email']:
-            email = "david.botero@pragma.com.co"
-        else:
+        if request.form['email']:
             email = request.form['email']
-        cursos = recommentation(model, data_, userId='{}'.format(email)).recommendCourses()
+        else:
+            email = "david.botero@pragma.com.co"
+
+        email = email.lower()
+        cursos = recommentation(MODEL, USER_COURSE, DATA, user= '{}'.format(email)).recommendCourses()
     else:
-        #data_ = DbFilter(data).filter_()
-        cursos = recommentation(model, data_, userId='{}'.format(correo)).recommendCourses()
+        email = email.lower()
+        cursos = recommentation(MODEL, USER_COURSE, DATA, user= '{}'.format(email)).recommendCourses()
     
     d = cursos.to_json(orient='records')
     return render_template('index.html',courses= json.loads(d))
-    #return cursos.to_json(orient='records')
+
+@app.route('/filtros', methods=['GET','POST'])
+def filtros():
+    unidad = ['Programas de Bibliotecas']
+
+    if request.method == 'POST':
+        unidad = request.form.getlist('uo')
+        print(unidad)
+    
+    DT = DATA[DATA.Unidad_Organizativa == '{}'.format(unidad[0])]
+    usuarios = DT.Email[:10]
+    cursos = recommentation(MODEL, USER_COURSE, DATA, user='-h-german@hotmail.com').recommendUser()   
+    d = cursos.to_json(orient='records')
+    u = usuarios.to_json(orient='records')
+    return render_template('filtros.html',usuarios= json.loads(u), courses= json.loads(d))
+       
 
 if __name__ == "__main__":
     app.run(debug= True, port= 8000)

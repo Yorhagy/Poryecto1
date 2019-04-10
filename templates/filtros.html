@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="POST" action="/filtros">
+        <div class="input-group-text">
+                <input type="checkbox" name="uo" id="administracion_mercadeo_finanzas" value="Administración, mercadeo y finanzas">
+                <label for="administracion_mercadeo_finanzas">Administración, mercadeo y finanzas</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="arte_manual" value="Arte Manual">
+                <label for="arte_manual">Arte Manual</label>
+            </div>
+            <div class="input-group-text">
+                    <input type="checkbox" name="uo" id="artes" value="Artes">
+                    <label for="artes">Artes</label>
+                </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="desarrollo_humano" value="Desarrollo Humano">
+                <label for="desarrollo_humano">Desarrollo Humano</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="formacion_fisico_deportiva" value="Formación Físico Deportiva">
+                <label for="formacion_fisico_deportiva">Formación Físico Deportiva</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="gastronomia" value="Gastronomía">
+                <label for="gastronomia">Gastronomía</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="idiomas" value="Idiomas">
+                <label for="idiomas">Idiomas</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="programas_recreativos" value="Programas Recreativos">
+                <label for="programas_recreativos">Programas Recreativos</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="programas_de_bibliotecas" value="Programas de Bibliotecas">
+                <label for="programas_de_bibliotecas">Programas de Bibliotecas</label>
+            </div>
+            <div class="input-group-text">
+                <input type="checkbox" name="uo" id="tecnologia_y_arte_audiovisual_digital" value="Tecnología y arte audiovisual digital">
+                <label for="tecnologia_y_arte_audiovisual_digital">Tecnología y arte audiovisual digital</label>
+            </div>
+        <input type="submit" value="Aceptar">
+    </form>
+    <table>
+            <thead>
+                <tr>
+                    <th>
+                        Usuarios
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in usuarios %}
+                    <tr>
+                        <td>
+                            {{ item}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Curso
+                        </th>
+                        <th>
+                            Puntaje
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in courses %}
+                        <tr>
+                            <td>
+                                {{ item['Curso'] }}
+                            </td>
+                            <td>
+                                {{ item['Score'] }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+</body>
+
+</html>
