@@ -1,19 +1,14 @@
 import pandas as pd
 
 class DbFilter():
-    def __init__(self, db, unidad, planEstudio):
-        self.db = db
+    def __init__(self, data, unidad=None):
+        self.data = data
+        self.Email = data.Email
         self.unidad = unidad
-        self. planEstudio = planEstudio
 
-    def print_unidad(self):
-        return self.unidad
-
-    def print_planEstudio(self):
-        return self.planEstudio
-
-data = pd.read_csv('comfama_users1.csv', nrows=1000, usecols=('email', 'Vector_Unidad_Organizativa', 'Vector_Plan_De_Estudios'))
-
-
-
-
+    def filtro(self):
+        user = list(set(self.Email.values))
+        for i in user:
+            d = self.data[self.Email == user]
+            if len(d) == len(self.unidad):
+                return d

@@ -48,11 +48,13 @@ def index(email='-h-german@hotmail.com'):
 
 @app.route('/filtros', methods=['GET','POST'])
 def filtros():
-    unidad = ['Programas de Bibliotecas']
+    unidad = []
     
     if request.method == 'POST':
         unidad = request.form.getlist('uo')
         print(unidad)
+    
+    
     
     DT = DATA[DATA.Unidad_Organizativa == '{}'.format(unidad[0])]
     usuarios = DT.Email[:10]
