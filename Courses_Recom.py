@@ -6,22 +6,21 @@ import json
 import psycopg2
 from Model_Recommender import recommentation
 
-#try:
-    #conn = psycopg2.connect(dbname='Confama', user='postgres', host='cognos', password='Pragma2017+', port=22817)
-    #conn.set_client_encoding('UTF8')
-#except:
-    #print ("I am unable to connect to the database")
+try:
+    conn = psycopg2.connect(dbname='Confama', user='postgres', host='cognos', password='Pragma2017+', port=22817)
+    conn.set_client_encoding('UTF8')
+except:
+    print ("I am unable to connect to the database")
 
-#cur = conn.cursor()
-#cur.execute('SELECT * FROM usuario_segmento LIMIT 10')
-#rows = cur.fetchall()
-#print(rows)
+cur = conn.cursor()
+cur.execute('SELECT * FROM usuario_segmento LIMIT 10')
+data = cur.fetchall()
 
-#cur.close()
-#conn.close()
+cur.close()
+conn.close()
 
-
-DATA = pd.read_csv('Comfama.csv')
+DATA = pd.DataFrame(data, columns=['Categoria', 'Email', 'Plan_de_Estudios', 'Unidad_Organizativa',
+                                   'cod_Email', 'cod_Plan_de_Estudios', 'Cod_Unidad'])
 MODEL = joblib.load('model_implict.pkl')
 USER_COURSE = load_npz('usuario_cursos.npz')
 
@@ -52,9 +51,6 @@ def filtros():
     
     if request.method == 'POST':
         unidad = request.form.getlist('uo')
-        print(unidad)
-    
-    
     
     DT = DATA[DATA.Unidad_Organizativa == '{}'.format(unidad[0])]
     usuarios = DT.Email[:10]
