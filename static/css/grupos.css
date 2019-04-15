@@ -1,0 +1,102 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+#contenedor-principal{
+    margin-top: 100px;
+    margin-bottom: 50px;
+} 
+.form-group.checkbox-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+.form-group.checkbox-group label {
+    display: inline-block;
+    cursor: pointer;
+}
+.form-group.checkbox-group input[type="checkbox"] {
+    display: none;
+}
+.form-group.checkbox-group input[type="checkbox"] + .checkbox_label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.form-group.checkbox-group input[type="checkbox"] + .checkbox_label span {
+    border: 1px solid #EE2B7B;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+.form-group.checkbox-group input[type="checkbox"] + .checkbox_label span i {
+    transform: scale(0) rotate(180deg);
+    transition: 0.2s;
+    color: #EE2B7B;
+}
+.form-group.checkbox-group input[type="checkbox"]:checked + .checkbox_label i {
+    transform: scale(1) rotate(0deg);
+}
+.form-group.checkbox-group input[type="checkbox"]:checked + .checkbox_label span {
+    transform: rotate(0deg);
+    border: 1px solid transparent;
+}
+#menu-principal{
+    background: #E71873;
+}
+.btn-consultar{
+    background: #EE2B7B;
+    color: #ffffff;
+    width: 50%;
+}
+.btn-consultar:hover{
+    background: #F15595;
+    color: #ffffff;
+}
+#menu-principal a{
+    color: #ffffff;
+}
+.tabla-recomendador{
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+}
+.tabla-recomendador thead tr{
+    background: rgba(238, 43, 123, 0.8);
+}
+.tabla-recomendador thead tr th, .tabla-recomendador thead tr td{
+    padding: 10px;
+    font-size: 1.3rem;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.tabla-recomendador tbody tr td{
+    padding: 4px 10px;
+    color: ;
+    text-transform: capitalize;
+}
+.tabla-recomendador tbody tr:nth-child(even){
+    background: rgba(238, 43, 123, 0.2);
+}
+.tabla-recomendador tbody tr:nth-child(odd){
+    background: #ffffff;
+}
+.botonera{
+    justify-content: flex-start;
+}
+@media screen and (max-width:768px){
+    .botonera{
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}

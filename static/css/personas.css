@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+#contenedor-principal{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+#tabla-recomendador{
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+}
+#tabla-recomendador thead tr{
+    background: rgba(238, 43, 123, 0.8);
+}
+#tabla-recomendador thead tr th{
+    padding: 10px;
+    font-size: 1.3rem;
+    color: #ffffff;
+    text-transform: capitalize;
+}
+#tabla-recomendador tbody tr td{
+    padding: 4px 10px;
+    color: #272727;
+    text-transform: capitalize;
+}
+#tabla-recomendador tbody tr:nth-child(even){
+    background: rgba(238, 43, 123, 0.2);
+}
+#tabla-recomendador tbody tr:nth-child(odd){
+    background: #ffffff;
+}
+#menu-principal{
+    background: #E71873;
+}
+.btn-consultar{
+    background: #EE2B7B;
+    color: #ffffff;
+}
+.btn-consultar:hover{
+    background: #F15595;
+    color: #ffffff;
+}
+.form-control:focus{
+    border-color: #EE2B7B;
+    box-shadow: 0 0 0 2px #F15595;
+}
+#menu-principal a{
+    color: #ffffff;
+}

@@ -23,8 +23,9 @@ def PrintRecommender(data, recommendation):
     return r
 
 class recommentation:
-    def __init__(self, model, user_course, data, user=None):
+    def __init__(self, model, user_course, data, data_=None, user=None):
         self.data = data
+        self.data_ = data_
         self.user = user
         self.model = model
         self.user_course = user_course
@@ -35,6 +36,6 @@ class recommentation:
         return PrintRecommender(self.data, recommendation)
 
     def recommendUser(self):
-        id_ = self.data.cod_Email[0]
+        id_ = self.data_.cod_Email.values[0]
         recommendation = self.model.recommend(id_, self.user_course)
         return PrintRecommender(self.data, recommendation)
