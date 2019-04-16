@@ -4,11 +4,11 @@ def puntaje(Score):
     frecuencia = []
     for j in Score:
         if j < 0.33:
-            frecuencia.append('Bajo')
+            frecuencia.append('Baja')
         elif j >= 0.33 and j < 0.66:
-            frecuencia.append('Medio')
+            frecuencia.append('Media')
         else:
-            frecuencia.append('Alto')
+            frecuencia.append('Alta')
     return frecuencia
 
 def PrintRecommender(data, recommendation):
@@ -19,7 +19,7 @@ def PrintRecommender(data, recommendation):
         courses.append(data.Plan_de_Estudios.loc[data.Cod_Plan_de_Estudios == idx].iloc[0])
         scores.append(score)
     r = pd.DataFrame({'Curso': courses, 'Score': scores})
-    r['Clasificación'] = puntaje(r.Score.values)
+    r['Afinidad'] = puntaje(r.Score.values)
     return r
 
 class recommentation:
@@ -36,6 +36,7 @@ class recommentation:
         return PrintRecommender(self.data, recommendation)
 
     def recommendUser(self):
-        id_ = self.data_.cod_Email.values[0]
+        tr = self.data.merge(self.data_, on='Email' )
+        id_ = tr.cod_Email.values[0]
         recommendation = self.model.recommend(id_, self.user_course)
         return PrintRecommender(self.data, recommendation)

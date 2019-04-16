@@ -39,9 +39,7 @@
     <div id="contenedor-principal" class="container">
         <div class="row">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, illum aut eius, delectus ratione aliquid
-                consequatur qui laudantium tempora impedit mollitia alias animi minus laboriosam accusantium asperiores
-                in. Optio, voluptatem!
+                
             </p>
         </div>
         <div class="row">
@@ -129,17 +127,16 @@
                                 Puntaje
                             </th>
                             <th>
-                                Calificación
+                                Afinidad
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         {% for item in courses %}
                         <tr>
                             <td>{{ loop.index }}</td>
                             <td>{{ item['Curso'] }}</td>
-                            <td>{{ item['Score'] }}</td>
-                            <td>{{ item['Clasificación'] }}</td>
+                            <td class="score">{{ item['Score'] }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -191,6 +188,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript">myFunc = myFunc( {{ afilength }} )</script>
 </body>
 
 </html>
